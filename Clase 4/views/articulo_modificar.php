@@ -18,7 +18,6 @@ if ($articulo === null) {
 </head>
 <body>
 <form method="post" action="../controllers/articulo_modificar.php">
-  <input type="hidden" name="id" value="<?php echo $articulo["id"] ?>" />
   <h2>Modificar Articulo</h2>
   <div>
     <label>Nombre</label>
@@ -26,7 +25,7 @@ if ($articulo === null) {
   </div>
   <div>
     <label>Precio</label>
-    <input type="text" value="<?php echo $articulo["precio"] ?>" name="precio">
+    <input type="number" value="<?php echo $articulo["precio"] ?>" name="precio">
   </div>
   <button>Guardar</button>
 </form>

@@ -1,31 +1,59 @@
 <?php
+function getConnection() {
+  $host = 'localhost';      // o la IP del servidor
+  $db   = 'base';        // nombre de la base
+  $user = 'root';     // usuario de la base
+  $pass = '';    // contraseña
+  $charset = 'utf8mb4';
+  $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+  return new PDO($dsn, $user, $pass);
+}
+
 function obtenerArticulos() {
-  $string = file_get_contents(__DIR__ . "/base.txt");
-  return json_decode($string, true);
-}
-
-function guardarArticulos($articulos) {
-  $string = json_encode($articulos);
-  file_put_contents(__DIR__ . "/base.txt", $string);
-}
-
-function obtenerProximoId($articulos) {
-  $maximo = 0;
-  foreach($articulos as $articulo) {
-    $id = intval($articulo["id"]);
-    if ($id > $maximo) {
-      $maximo = $id;
-    }
+  $pdo = getConnection();
+  $sql = "SELECT * FROM articulos ";
+  $sql.= " ORDER BY precio DESC ";
+  $stmt = $pdo->query($sql);
+  $articulos = [];
+  while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $articulos[] = $fila;
   }
-  return $maximo + 1;
+  return $articulos;
 }
 
-function buscarPorId($articulos, $id) {
-  foreach($articulos as $articulo) {
-    if ($articulo["id"] == $id) {
-      return $articulo;
-    }
+function guardarArticulo($array) {
+  $pdo = getConnection();
+  if (isset($array["id"])) {
+    $sql = "UPDATE articulos SET ";
+    $sql.= " nombre = :nombre, ";
+    $sql.= " precio = :precio ";
+    $sql.= "WHERE id = :id ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $array["id"], PDO::PARAM_INT);
+  } else {
+    $sql = "INSERT INTO articulos (nombre, precio) VALUES (:nombre, :precio) ";
+    $stmt = $pdo->prepare($sql);
   }
-  return null;
+  
+  $stmt->bindParam(':nombre', $array["nombre"], PDO::PARAM_STR);
+  $stmt->bindParam(':precio', $array["precio"], PDO::PARAM_INT);
+  $stmt->execute();
+}
+
+function eliminarArticulo($id) {
+  $pdo = getConnection();
+  $sql = "DELETE FROM articulos WHERE id = :id ";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+}
+
+function buscarPorId($id) {
+  $pdo = getConnection();
+  $sql = "SELECT * FROM articulos WHERE id = ? ";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(1, $id, PDO::PARAM_INT);
+  $stmt->execute();
+  return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>

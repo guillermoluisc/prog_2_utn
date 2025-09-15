@@ -14,9 +14,13 @@
   </div>
   <div>
     <label>Precio</label>
-    <input type="text" name="precio">
+    <input type="number" name="precio">
+    <!-- como hariamos para hacer todo el proces para calcular la suma de todos los precios -->
   </div>
   <button>Guardar</button>
 </form>
 </body>
 </html>
+
+<!-- hacer otra vista con mas detalles de cada producto -->
+<!-- Solucionar algun error-->

@@ -1,6 +1,7 @@
 <?php
 require "models/funciones.php";
-$articulos = obtenerArticulos();
+$articulos = obtenerArticulosOrdenadosPorPrecio();
+$total = obteberTotal();
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,11 @@ $articulos = obtenerArticulos();
   <title></title>
 </head>
 <body>
-  <a href="./views/articulo.php">Agregar</a>
+  <a href="./views/articulo_nuevo.php">Agregar</a>
+  <br>
+   TOTAL : <?php
+   echo $total;
+   ?>
   <table>
     <thead>
       <tr>
@@ -27,11 +32,13 @@ $articulos = obtenerArticulos();
           <td><?php echo $articulo["id"] ?></td>
           <td><?php echo $articulo["nombre"] ?></td>
           <td><?php echo $articulo["precio"] ?></td>
-          <td><a href="./views/articulo.php?id=<?php echo $articulo["id"] ?>">Modificar</a></td>
+          <td><a href="./views/articulo_modificar.php?id=<?php echo $articulo["id"] ?>">Modificar</a></td>
           <td><a href="./controllers/articulo_eliminar.php?id=<?php echo $articulo["id"] ?>">Eliminar</a></td>
         </tr>
       <?php } ?>
     </tbody>
   </table>
+  <?php
+ ?>
 </body>
 </html>
