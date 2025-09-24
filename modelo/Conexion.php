@@ -1,7 +1,7 @@
 <?php
 function getConnection() {
     $host = 'localhost';
-    $db   = 'agenda';
+    $db   = 'base';
     $user = 'root';
     $pass = '';
     $charset = 'utf8mb4';

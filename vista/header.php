@@ -8,25 +8,51 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand ms-2" href="index.php">Agenda MVC</a>
-  </div>
-</nav>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="index.php">Agenda MVC</a>
+        </div>
+    </nav>
 
-<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="menuLateral">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Menú</h5>
-    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ul class="nav flex-column">
-      <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="index.php?accion=crear">Nuevo Contacto</a></li>
-    </ul>
-  </div>
-</div>
-<!-- Espacio para compensar el menú fijo -->
-<div style="height: 70px;"></div>
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="menuLateral">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menú</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index.php">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index.php?accion=crear">Nuevo Cliente</a>
+                </li>
+
+                <!-- Artículos con submenu -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" data-bs-toggle="collapse" href="#submenuArticulos" role="button" aria-expanded="false" aria-controls="submenuArticulos">
+                        Artículos
+                    </a>
+                    <div class="collapse ps-3" id="submenuArticulos">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="index.php?accion=crear_articulo">➕ Agregar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="index.php?accion=listar_articulos">📋 Ver lista</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Espacio para compensar el menú fijo -->
+    <div style="height: 70px;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

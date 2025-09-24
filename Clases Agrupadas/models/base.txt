@@ -1,1 +1,0 @@
-[{"id":1,"nombre":"Samsung 1222","precio":"1000"},{"id":2,"nombre":"iPhone 16","precio":2000},{"id":3,"nombre":"iPhone 14111","precio":"1500"},{"id":4,"nombre":"adsad","precio":"asdasdads"}]
