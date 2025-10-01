@@ -47,3 +47,33 @@ function eliminarArticulo($id) {
     $stmt = $db->prepare("DELETE FROM articulos WHERE id = ?");
     $stmt->execute([$id]);
 }
+
+function generarVenta($item) {
+
+    $id = $item['id'];
+    $cantidad = $item['cantidad'];
+
+    $db = getConnection();
+    $sql = "UPDATE articulos SET stock = stock - ? WHERE id = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        $cantidad,
+        $id
+    ]);
+    registrarVenta($item);
+    unset($_SESSION['carrito'][$id]);
+    header("Location: index.php?accion=ver_carrito");
+}
+
+function registrarVenta($item)
+{
+    $db = getConnection();
+    $sql = "INSERT INTO ventas_clientes (id_articulo, id_cliente, cantidad, precio_unitario) VALUES (?, ?, ?, ?)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        $item['id'],
+        1,
+        $item['cantidad'],
+        $item['precio'] * $item['cantidad']
+    ]);
+}

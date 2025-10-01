@@ -15,7 +15,6 @@
             <a class="navbar-brand ms-2" href="index.php">Agenda MVC</a>
         </div>
     </nav>
-
     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="menuLateral">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Menú</h5>

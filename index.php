@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'controlador/contactoControlador.php';
 require_once 'controlador/articuloControlador.php';
 
@@ -37,6 +38,21 @@ switch ($accion) {
         break;
     case 'listar_articulos':
         listarArticulos();
+        break;
+    case 'articulos_cards':
+        listarArticulosCards();
+        break;
+    case 'agregar_carrito':
+        agregarAlCarrito();
+        break;
+    case 'eliminar_del_carrito':
+        eliminarDelCarrito();
+        break;
+    case 'checkout':
+        checkout();
+        break;
+    case 'ver_carrito':
+        verCarrito();
         break;
     default:
         listarContactos();
