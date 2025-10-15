@@ -22,4 +22,19 @@
         </tbody>
     </table>
 </div>
+
+<div class="d-flex justify-content-center mt-3">
+    <?php if($pagina > 1): ?>
+        <a href="index.php?pagina=<?= $pagina-1 ?>" class="btn btn-secondary me-2">Anterior</a>
+    <?php endif; ?>
+
+    <span class="align-self-center">Página <?= $pagina ?> de <?= $totalPaginas ?></span>
+
+    <?php if($pagina < $totalPaginas): ?>
+        <a href="index.php?pagina=<?= $pagina+1 ?>" class="btn btn-secondary ms-2">Siguiente</a>
+    <?php endif; ?>
+</div>
+
+<!-- Limit es cuantas filas vamos a traer y offset desde donde empezamos -->
+<div class="mb-5"></div>
 <?php include 'footer.php'; ?>
